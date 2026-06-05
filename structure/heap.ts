@@ -1,0 +1,59 @@
+class MaxHeap {
+    heap: number[] = []
+
+    remove(index: number) {
+
+    }
+
+    insert(el: number) {
+        this.heap.length++;
+        this.heap[this.heap.length - 1] = el;
+
+        this.siftUp(this.heap.length - 1);
+    }
+
+    siftUp(index: number) {
+
+        if(index <= 0) return
+
+        const I = this.heap[index];
+        const parentIndex = this.parent(index);
+
+        // if the parent is greater than parent then move up
+        const parentValue = this.heap[parentIndex];
+
+        if (I > parentValue) {
+
+            this.heap[index] = parentValue;
+            this.heap[parentIndex] = I;
+            this.siftUp(parentIndex);
+
+        }
+
+    }
+
+    parent(i: number) {
+        return Math.floor( (i - 1) / 2)
+    }
+
+    leftChild(index: number) {
+        return 2 * index + 1
+    }
+
+    rightChild(index: number) {
+     return 2 * index + 2
+    }
+}
+
+const heap = new MaxHeap();
+heap.insert(9)
+heap.insert(2)
+heap.insert(3)
+heap.insert(4)
+
+console.log(heap.heap)
+// 9
+// 7 8
+// 54 31
+// 0
+
