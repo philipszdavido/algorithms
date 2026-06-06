@@ -1,12 +1,10 @@
-class MaxHeap {
+export default class MaxHeap {
     heap: number[] = []
 
     remove() {
 
         const max = this.heap[0];
         const end = this.heap[this.heap.length - 1];
-
-        console.log(max, end);
 
         this.heap[this.heap.length - 1] = max;
         this.heap[0] = end;
@@ -89,17 +87,17 @@ class MaxHeap {
     }
 }
 
-const heap = new MaxHeap();
-heap.insert(9)
-heap.insert(2)
-heap.insert(3)
-heap.insert(4)
-
-console.log(heap.heap)
-
-heap.remove()
-
-console.log(heap.heap)
+// const heap = new MaxHeap();
+// heap.insert(9)
+// heap.insert(2)
+// heap.insert(3)
+// heap.insert(4)
+//
+// console.log(heap.heap)
+//
+// heap.remove()
+//
+// console.log(heap.heap)
 
 // 9
 // 7 8
