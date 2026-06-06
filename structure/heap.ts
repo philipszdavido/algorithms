@@ -1,7 +1,21 @@
 class MaxHeap {
     heap: number[] = []
 
-    remove(index: number) {
+    remove() {
+
+        const max = this.heap[0];
+        const end = this.heap[this.heap.length - 1];
+
+        console.log(max, end);
+
+        this.heap[this.heap.length - 1] = max;
+        this.heap[0] = end;
+
+        this.heap = this.heap.slice(0, this.heap.length - 1);
+
+        this.siftDown(0)
+
+        return max
 
     }
 
@@ -32,6 +46,36 @@ class MaxHeap {
 
     }
 
+    siftDown(index: number) {
+        const parent = this.heap[index];
+        const leftIndex = this.leftChild(index)
+        const rightIndex = this.rightChild(index)
+
+        const heapLen = this.heap.length - 1;
+
+        if (leftIndex > heapLen) { return; }
+
+        const left = this.heap[leftIndex];
+        const right = rightIndex <= heapLen ? this.heap[rightIndex] : -Infinity;
+
+        let remIndex = index
+
+        if (parent >= left && parent >= right) { return; }
+
+        if (left > right) {
+            this.heap[leftIndex] = parent;
+            this.heap[index] = left;
+            remIndex = leftIndex;
+        } else {
+            this.heap[rightIndex] = parent;
+            this.heap[index] = right;
+            remIndex = rightIndex;
+        }
+
+        this.siftDown(remIndex);
+
+    }
+
     parent(i: number) {
         return Math.floor( (i - 1) / 2)
     }
@@ -52,6 +96,11 @@ heap.insert(3)
 heap.insert(4)
 
 console.log(heap.heap)
+
+heap.remove()
+
+console.log(heap.heap)
+
 // 9
 // 7 8
 // 54 31
